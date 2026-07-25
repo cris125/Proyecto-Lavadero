@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { obtenerRegistrosApi, crearRegistroApi } from '@/api/registros';
+import { crearGastoApi } from '@/api/gastos';
 import { obtenerClientesApi } from '@/api/clientes';
 import { obtenerVehiculosApi } from '@/api/vehiculos';
 import { obtenerUsuariosApi } from '@/api/usuarios';
@@ -34,8 +35,12 @@ export function RegistrosPage() {
 
   const handleSave = async (data: any) => {
     try {
-      await createMutation.mutateAsync(data);
+      const { porcentaje_colaborador, ...lavadoData } = data;
+      await createMutation.mutateAsync(lavadoData);
+      const comision = (data.precio * (porcentaje_colaborador || 32)) / 100;
+      await crearGastoApi({ concepto: 'Comisión colaborador', monto: comision, categoria: 'Personal', fecha: Date.now() });
       queryClient.invalidateQueries({ queryKey: ['registros'] });
+      queryClient.invalidateQueries({ queryKey: ['gastos'] });
       toast.success('Lavado registrado');
       modal.close();
     } catch (err: any) {
