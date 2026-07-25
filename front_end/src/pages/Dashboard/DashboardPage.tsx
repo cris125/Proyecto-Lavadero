@@ -92,8 +92,8 @@ export function DashboardPage() {
             <BarChart data={ventas} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
               <XAxis dataKey="fecha" tick={{ fontSize: 10 }} stroke="#9ca3af" />
-              <YAxis tick={{ fontSize: 10 }} stroke="#9ca3af" tickFormatter={(v) => `$${v}`} />
-              <Tooltip formatter={(value: number) => [`$${value}`, 'Ganancias']} contentStyle={{ fontSize: 12 }} />
+              <YAxis tick={{ fontSize: 10 }} stroke="#9ca3af" tickFormatter={(v: any) => `$${v ?? 0}`} />
+              <Tooltip formatter={(value: any) => [`$${value ?? 0}`, 'Ganancias']} contentStyle={{ fontSize: 12 }} />
               <Bar dataKey="total" fill="#3b82f6" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
