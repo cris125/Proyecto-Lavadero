@@ -1,0 +1,117 @@
+{
+  "auth": {
+    "login_admin": {
+      "method": "POST",
+      "url": "http://localhost:3000/api/usuarios/login",
+      "headers": { "Content-Type": "application/json" },
+      "body": { "email": "admin@example.com", "contraseña": "Admin123@" }
+    }
+  },
+  "usuarios": {
+    "crear_admin": {
+      "method": "POST",
+      "url": "http://localhost:3000/api/usuarios",
+      "headers": { "Content-Type": "application/json", "Authorization": "Bearer {token}" },
+      "body": {
+        "nombre": "Admin",
+        "apellido": "Sistema",
+        "email": "admin@example.com",
+        "telefono": "3001112233",
+        "contraseña": "Admin123@",
+        "rol": "ADMIN"
+      }
+    },
+    "crear_colaborador": {
+      "method": "POST",
+      "url": "http://localhost:3000/api/usuarios",
+      "headers": { "Content-Type": "application/json", "Authorization": "Bearer {token}" },
+      "body": {
+        "nombre": "Juan",
+        "apellido": "Pérez",
+        "email": "juan@example.com",
+        "telefono": "3011234567",
+        "contraseña": "Password1@",
+        "rol": "COLABORADOR"
+      }
+    },
+    "listar": { "method": "GET", "url": "http://localhost:3000/api/usuarios", "headers": { "Authorization": "Bearer {token}" } },
+    "obtener": { "method": "GET", "url": "http://localhost:3000/api/usuarios/usr_xxx", "headers": { "Authorization": "Bearer {token}" } },
+    "editar": {
+      "method": "PUT", "url": "http://localhost:3000/api/usuarios/usr_xxx",
+      "headers": { "Content-Type": "application/json", "Authorization": "Bearer {token}" },
+      "body": { "telefono": "3109876543" }
+    },
+    "restablecer_password": {
+      "method": "PATCH", "url": "http://localhost:3000/api/usuarios/usr_xxx/restablecer-password",
+      "headers": { "Content-Type": "application/json", "Authorization": "Bearer {token}" },
+      "body": { "contraseña": "NuevaPass1@" }
+    },
+    "eliminar": { "method": "DELETE", "url": "http://localhost:3000/api/usuarios/usr_xxx", "headers": { "Authorization": "Bearer {token}" } }
+  },
+  "productos": {
+    "crear": {
+      "method": "POST", "url": "http://localhost:3000/api/productos",
+      "headers": { "Content-Type": "application/json", "Authorization": "Bearer {token}" },
+      "body": { "nombre": "Shampoo", "descripcion": "Shampoo para lavado", "precio_compra": 5000, "precio_venta": 12000, "cantidad": 50, "unidad": "litros" }
+    },
+    "listar": { "method": "GET", "url": "http://localhost:3000/api/productos", "headers": { "Authorization": "Bearer {token}" } }
+  },
+  "servicios_catalogo": {
+    "crear": {
+      "method": "POST", "url": "http://localhost:3000/api/servicios",
+      "headers": { "Content-Type": "application/json", "Authorization": "Bearer {token}" },
+      "body": { "nombre": "Lavado Básico", "descripcion": "Lavado exterior e interior básico", "precio": 25000, "duracion": 30 }
+    },
+    "listar": { "method": "GET", "url": "http://localhost:3000/api/servicios", "headers": { "Authorization": "Bearer {token}" } },
+    "activos": { "method": "GET", "url": "http://localhost:3000/api/servicios/activos", "headers": { "Authorization": "Bearer {token}" } }
+  },
+  "clientes": {
+    "crear": {
+      "method": "POST", "url": "http://localhost:3000/api/clientes",
+      "headers": { "Content-Type": "application/json", "Authorization": "Bearer {token}" },
+      "body": { "nombre": "Carlos López", "telefono": "3001234567", "email": "carlos@email.com", "observaciones": "Cliente frecuente" }
+    },
+    "listar": { "method": "GET", "url": "http://localhost:3000/api/clientes", "headers": { "Authorization": "Bearer {token}" } },
+    "buscar_telefono": { "method": "GET", "url": "http://localhost:3000/api/clientes/buscar?telefono=3001234567", "headers": { "Authorization": "Bearer {token}" } }
+  },
+  "vehiculos": {
+    "crear": {
+      "method": "POST", "url": "http://localhost:3000/api/vehiculos",
+      "headers": { "Content-Type": "application/json", "Authorization": "Bearer {token}" },
+      "body": { "placa": "ABC123", "marca": "Toyota", "modelo": "Corolla 2020", "color": "Blanco", "tipo": "Sedán", "propietario_id": "cli_xxx" }
+    },
+    "buscar_placa": { "method": "GET", "url": "http://localhost:3000/api/vehiculos/buscar?placa=ABC123", "headers": { "Authorization": "Bearer {token}" } },
+    "por_propietario": { "method": "GET", "url": "http://localhost:3000/api/vehiculos/por-propietario?propietario_id=cli_xxx", "headers": { "Authorization": "Bearer {token}" } }
+  },
+  "lavados": {
+    "registrar": {
+      "method": "POST", "url": "http://localhost:3000/api/lavados",
+      "headers": { "Content-Type": "application/json", "Authorization": "Bearer {token}" },
+      "body": { "cliente_id": "cli_xxx", "vehiculo_id": "veh_xxx", "colaborador_id": "usr_xxx", "servicio_id": "svc_xxx", "precio": 25000, "observaciones": "" }
+    },
+    "listar": { "method": "GET", "url": "http://localhost:3000/api/lavados", "headers": { "Authorization": "Bearer {token}" } },
+    "filtrar_fecha": { "method": "GET", "url": "http://localhost:3000/api/lavados?desde=1700000000000&hasta=1799999999999", "headers": { "Authorization": "Bearer {token}" } },
+    "por_colaborador": { "method": "GET", "url": "http://localhost:3000/api/lavados?colaborador_id=usr_xxx", "headers": { "Authorization": "Bearer {token}" } }
+  },
+  "gastos": {
+    "crear": {
+      "method": "POST", "url": "http://localhost:3000/api/gastos",
+      "headers": { "Content-Type": "application/json", "Authorization": "Bearer {token}" },
+      "body": { "concepto": "Compra de insumos", "monto": 150000, "categoria": "Insumos", "fecha": 1712000000000 }
+    },
+    "listar": { "method": "GET", "url": "http://localhost:3000/api/gastos", "headers": { "Authorization": "Bearer {token}" } }
+  },
+  "dashboard": {
+    "hoy": { "method": "GET", "url": "http://localhost:3000/api/dashboard/hoy", "headers": { "Authorization": "Bearer {token}" } },
+    "semana": { "method": "GET", "url": "http://localhost:3000/api/dashboard/semana", "headers": { "Authorization": "Bearer {token}" } },
+    "mes": { "method": "GET", "url": "http://localhost:3000/api/dashboard/mes", "headers": { "Authorization": "Bearer {token}" } }
+  },
+  "reportes": {
+    "ventas": { "method": "GET", "url": "http://localhost:3000/api/reportes/ventas?desde=1700000000000&hasta=1799999999999", "headers": { "Authorization": "Bearer {token}" } },
+    "servicios_mas_vendidos": { "method": "GET", "url": "http://localhost:3000/api/reportes/servicios-mas-vendidos?desde=1700000000000&hasta=1799999999999", "headers": { "Authorization": "Bearer {token}" } },
+    "colaboradores": { "method": "GET", "url": "http://localhost:3000/api/reportes/colaboradores?desde=1700000000000&hasta=1799999999999", "headers": { "Authorization": "Bearer {token}" } },
+    "clientes_frecuentes": { "method": "GET", "url": "http://localhost:3000/api/reportes/clientes-frecuentes?desde=1700000000000&hasta=1799999999999", "headers": { "Authorization": "Bearer {token}" } },
+    "utilidad": { "method": "GET", "url": "http://localhost:3000/api/reportes/utilidad?desde=1700000000000&hasta=1799999999999", "headers": { "Authorization": "Bearer {token}" } }
+  },
+  "health": { "method": "GET", "url": "http://localhost:3000/health", "headers": {} }
+}
