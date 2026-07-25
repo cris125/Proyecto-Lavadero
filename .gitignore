@@ -1,6 +1,6 @@
 node_modules/
 .back_end (2)/
-netlify/
+/netlify/
 
 # Archivos de sistema
 .DS_Store

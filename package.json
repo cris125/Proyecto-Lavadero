@@ -17,9 +17,13 @@
     "test": "npm run test --workspace=back_end"
   },
   "dependencies": {
-    "react-is": "^19.2.8"
+    "react-is": "^19.2.8",
+    "media-typer": "1.1.1"
   },
   "devDependencies": {
     "concurrently": "^10.0.4"
+  },
+  "overrides": {
+    "media-typer": "1.1.1"
   }
 }
