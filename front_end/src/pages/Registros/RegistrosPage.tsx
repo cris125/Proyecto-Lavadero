@@ -30,7 +30,7 @@ export function RegistrosPage() {
     r.placa?.toLowerCase().includes(search.toLowerCase()) || r.observaciones?.toLowerCase().includes(search.toLowerCase())
   );
 
-  const getNombre = (list: any[], id: string) => list?.find((i: any) => i.id === id)?.nombre || id;
+  const getNombre = (list: any[] | undefined, id: string) => list?.find((i: any) => i.id === id)?.nombre || id;
 
   const handleSave = async (data: any) => {
     try {

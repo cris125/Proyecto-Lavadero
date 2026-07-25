@@ -58,6 +58,7 @@ export interface Vehiculo {
 
 export interface RegistroLavado {
   id?: string;
+  placa?: string;
   cliente_id: string;
   vehiculo_id: string;
   colaborador_id: string;
